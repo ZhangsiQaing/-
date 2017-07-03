@@ -1,7 +1,10 @@
-1、结构分析
-nginx配置文件中主要包括六块：main，events，http，server，location，upstream
-结构如下： 
-    main
+# nginx.conf结构分析
+
+nginx.conf文件中主要包括六块：
+**main**，**events**，**http**，**server**，**location**，**upstream**
+各个模块的结构顺序如下:
+
+    main  
     events{
         ....
     }
@@ -16,16 +19,17 @@ nginx配置文件中主要包括六块：main，events，http，server，locatio
         }
     }
 
-main块：主要控制nginx子进程的所属用户/用户组、派生子进程数、错误日志位置/级别、pid位置、子进程优先级、进程对应cpu、进程能够打开的文件描述符数目等
-events块：控制nginx处理连接的方式
-http块：是nginx处理http请求的主要配置模块，大多数配置都在这里面进行
-server块：是nginx中主机的配置块，可以配置多个虚拟主机
-location块：是server中对应的目录级别的控制块，可以有多个
-upstream块：是nginx做反向代理和负载均衡的配置块，可以有多个
+* main块：主要控制nginx子进程的所属用户/用户组、派生子进程数、错误日志位置/级别、pid位置、子进程优先级、进程对应cpu、进程能够打开的文件描述符数目等
+* events块：控制nginx处理连接的方式
+* http块：是nginx处理http请求的主要配置模块，大多数配置都在这里面进行
+* server块：是nginx中主机的配置块，可以配置多个虚拟主机
+* location块：是server中对应的目录级别的控制块，可以有多个
+* upstream块：是nginx做反向代理和负载均衡的配置块，可以有多个
 
-以下是一个nginx配置文件的案例 
-nginx.conf
 
+# nginx.conf文件
+
+```
 user  nginx nginx;
 worker_processes  4;
 
@@ -87,3 +91,4 @@ http {
 		}
 	}
 }
+```
