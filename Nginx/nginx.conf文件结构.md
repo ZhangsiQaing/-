@@ -76,8 +76,8 @@ http {
 		server_name  www.58pic.com;
 		root   /opt/software/nginx/html/www/58pic/;
 		index  index.php index.html index.htm;
-
-        include rewrite_www;
+		
+		include rewrite_www;
 
 		# if (!-e $request_filename){
 		# 	rewrite ^/(.*) /index.php last;
