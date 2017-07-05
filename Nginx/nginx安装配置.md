@@ -2,7 +2,7 @@
 
 ### 下载nginx
 ```
-wget http://nginx.org/download/nginx-1.12.0.tar.gz
+wget http://nginx.org/download/nginx-1.10.3.tar.gz
 ```
 
 ### 安装依赖服务
