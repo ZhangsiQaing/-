@@ -30,7 +30,7 @@ nginx.conf文件中主要包括六块：
 # nginx.conf文件
 
 ```
-user  nginx nginx;
+user  nginx nginx;     #
 worker_processes  4;
 
 error_log  /opt/software/nginx/logs/error.log crit;
