@@ -33,16 +33,20 @@ nginx.conf文件中主要包括六块：
 user  nginx nginx;     #
 worker_processes  4;
 
-error_log  /opt/software/nginx/logs/error.log crit;
+#[debug|info|notice|warn|error|crit] debug最详细   crit最简单
+error_log  /opt/software/nginx/logs/error.log crit;  
+
 events {
 	use epoll;   
 	multi_accept on;
-	worker_connections  65535;
+	worker_connections  65535;  #工作进程的最大连接数量 理论上每台nginx服务器的最大连接数为worker_processes*worker_connections worker_processes为我们再main中开启的进程数
 }
 
+
+#设定http服务器，利用它的反向代理功能提供负载均衡支持
 http {
-	include       mime.types;
-	default_type  application/octet-stream;
+	include       mime.types;   #设定mime类型，类型由mime.type文件定义
+	default_type  application/octet-stream; 
 
 	sendfile        on;
 	tcp_nopush      on;
@@ -69,6 +73,9 @@ http {
 	open_file_cache_valid    30s;
 	open_file_cache_min_uses 2;
 	open_file_cache_errors   off;
+
+
+	#日志格式设置
 
 
 	server {
