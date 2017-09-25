@@ -27,9 +27,11 @@ sudo apt-get install libfreetype6-dev
 
 ## 五、编译成功后的配置
 ```
+在编译环境目录复制php.ini-production到/opt/php/etc/
+cp php.ini-production  php.ini
+
 cd /opt/php/etc  
 cp php-fpm.conf.default php-fpm.conf
-
 
 cd /opt/php/etc/php-fpm.d
 cp www.conf.default www.conf
@@ -37,7 +39,7 @@ cp www.conf.default www.conf
 user = www-data
 group = www-data
 
-如果www-data用户不存在，那么先添加www-data用户  
+如果www-data用户不存在，那么先添加www-data用户
 groupadd www-data  
 useradd -g www-data www-data  
 
@@ -50,9 +52,44 @@ location ~ \.php$ {
             include        fastcgi_params;
         }
 
-启动PHP
+启动PHP  /opt/nginx/
+```
+### 加入系统变量
+sudo echo "PATH=$PATH:/opt/php/bin">> /etc/profile  
+sudo echo "export PATH">> /etc/profile  
+source /etc/profile  
+
+
+## 六、添加扩展
+### 添加redis扩展
+```
+1、下载源码
+git clone -b php7 https://github.com/phpredis/phpredis.git
+
+2、将下载下来的源码移动到/etc 文件下, 然后进入这个目录下
+cd /etc/phpredis
+
+3、执行phpize生成编译文件
+$ sudo apt install php7.0-dev
+
+中间可能会出错，使用
+sudo apt-get install m4
+sudo apt-get install autoconf
+
+在/opt/php/etc/php.ini
+添加如下一行
+extension=redis.so
+
+重启PHP
+```
+
+### 添加memcache扩展
+```
+1、下载源码
 ```
 
 
 
-http://blog.csdn.net/earbao/article/details/50235413    配置连接
+
+
+
